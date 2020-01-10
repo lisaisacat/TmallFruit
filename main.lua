@@ -29,7 +29,7 @@ fwShowTextView("banner","text1","开启浮动窗口","center","FFFFFF","000000",
 --显示一个文字视图
 mSleep(500);
 
-UINew("种水果","立即运行","立即退出","shszg.dat",0,30)
+UINew("种水果","立即运行","立即退出","tmfruit.dat",0,30)
 UILabel("使用须知",20,"center","230,50,92")
 UILabel("1. 需要手动进入活动页面脚本才生效",16,"left","0,0,0")
 UILabel("2. 任务按照从上到下依次排序，可屏蔽部分任务",16,"left","0,0,0")
@@ -124,6 +124,13 @@ if w == 1080 and h == 1920 then
 				{  982, 1618, 0xcf1705},
 				{ 1066, 1698, 0xe30100},
 			})--右下角入口
+		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
+		if x ~= -1 then
+			fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+			mSleep(fms)
+			tap(x,y)
+			log("签到")
+		end
 		if task2 == "任务二" then
 			x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
 			if x ~= -1 then
