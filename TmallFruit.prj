@@ -1,1 +1,1 @@
-{"plugin":[],"src":["main.lua"],"comment":"--%s\n--%s\n\n-- Create By %s on %s\n-- Copyright © %s . All rights reserved.\n","templates":"default","res":["freefruit.png"],"author":"TouchSpriteStudio","preset":"\t\nlocal ts = require\"ts\"\n\t\nrequire\"TSLib\"\n\t\n"}
+{"plugin":[],"src":["main.lua"],"comment":"--%s\n--%s\n\n-- Create By %s on %s\n-- Copyright © %s . All rights reserved.\n","templates":"default","res":["获得纽扣确定.png","立即签到.png","免费领水果.png","回到淘宝.png"],"preset":"\t\nlocal ts = require\"ts\"\n\t\nrequire\"TSLib\"\n\t\n","author":"TouchSpriteStudio"}
