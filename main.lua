@@ -24,10 +24,11 @@ else
 	toast("脚本尚未完全适配您的手机分辨率，不保证运行效果")
 	mSleep(3000)
 end
-fwShowWnd("banner",lx0,ly0,rx0,ry0,1);
-fwShowTextView("banner","text1","开启浮动窗口","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
+glSettings({switch = "1101", x1 = lx0, y1 = ly0, x2 = rx0, y2 = ry0,tsp_switch = true})
+--fwShowWnd("banner",lx0,ly0,rx0,ry0,1);
+--fwShowTextView("banner","text1","开启浮动窗口","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 --显示一个文字视图
-mSleep(500);
+--mSleep(500);
 
 UINew("种水果","立即运行","立即退出","tmfruit.dat",0,30)
 UILabel("使用须知",20,"center","230,50,92")
@@ -44,21 +45,23 @@ function window()
 	ss = 30
 	for i = 1,30 do
 		ss = ss-1
-		fwShowTextView("banner","text1","倒计时 "..ss,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
+		--fwShowTextView("banner","text1","倒计时 "..ss,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
+		mLog("倒计时 "..ss)
 		mSleep(fms)
 	end
 end
 
 t0 = os.time()
-fwShowTextView("banner","text1",t0,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
+--fwShowTextView("banner","text1",t0,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 
 function finish()
 	t1 = os.time()
-	log(t1)
+	mLog(t1)
 	if t1-t0 >= 30 then
-		fwShowTextView("banner","text1","倒计时完成，已获得福气","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+		--fwShowTextView("banner","text1","倒计时完成，已获得福气","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+		mLog("倒计时完成，已获得福气")
 		mSleep(fms)
-		log("叉叉")
+		mLog("叉叉")
 		if w == 640 and h == 1136 then
 			multiColTap({
 					{   44,   70, 0xffffff},
@@ -107,7 +110,7 @@ function finish()
 			os.execute("input keyevent KEYCODE_BACK")
 			mSleep(1000)
 		else
-			toast("暂不支持您的手机分辨率")
+			mLog("暂不支持您的手机分辨率")
 			mSleep(3000)
 		end
 		t0 = os.time()
@@ -118,6 +121,13 @@ if w == 1080 and h == 1920 then
 	fwShowTextView("banner","text1","分辨率：1920x1080","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 	mSleep(fms)
 	while true do
+		x, y = findImageInRegionFuzzy("freefruit.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
+		if x ~= -1 and y ~= -1 then
+			--fwShowTextView("banner","text1","免费领水果","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+			mSleep(fms)
+			tap(x+100,y-10)
+			mLog("免费领水果")
+		end
 		multiColTap({
 				{  953, 1625, 0xe10600},
 				{  975, 1576, 0xffeab3},
@@ -126,68 +136,68 @@ if w == 1080 and h == 1920 then
 			})--右下角入口
 		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
 		if x ~= -1 then
-			fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-			mSleep(fms)
+			--fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+			--mSleep(fms)
 			tap(x,y)
-			log("签到")
+			mLog("签到")
 		end
 		if task2 == "任务二" then
 			x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
 			if x ~= -1 then
-				fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
 				t0 = os.time()
 				window()
-				log("点击第二个任务")
+				mLog("点击第二个任务")
 				finish()
 			end
 		end
 		if task3 == "任务三" then
 			x,y = findMultiColorInRegionFuzzy( 0xfd613f, "64|59|0xfc4740,-77|-6|0xffffff,109|68|0xffffff", 90, 771, 1045, 998, 1151)--3
 			if x ~= -1 then
-				fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
 				t0 = os.time()
 				window()
-				log("点击第三个任务")
+				mLog("点击第三个任务")
 				finish()
 			end
 		end
 		if task4 == "任务四" then
 			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "50|60|0xfb483e,-87|0|0xffffff,97|73|0xffffff", 80, 777, 1240, 987, 1332)--4
 			if x ~= -1 then
-				fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
 				t0 = os.time()
 				window()
-				log("点击第四个任务")
+				mLog("点击第四个任务")
 				finish()
 			end
 		end
 		if task5 == "任务五" then
 			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "4|61|0xfc4740,-90|1|0xffffff,103|66|0xffffff", 90, 773, 1426, 993, 1520)--5
 			if x ~= -1 then
-				fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
 				t0 = os.time()
 				window()
-				log("点击第五个任务")
+				mLog("点击第五个任务")
 				finish()
 			end
 		end
 		if task6 == "任务六" then
 			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "73|60|0xfc4740,-70|2|0xffffff,118|66|0xffffff", 80, 780, 1623, 982, 1703)--6
 			if x ~= -1 then
-				fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
 				t0 = os.time()
 				window()
-				log("点击第六个任务")
+				mLog("点击第六个任务")
 				finish()
 			end
 		end
@@ -200,80 +210,84 @@ else
 	fwShowTextView("banner","text1","分辨率：1920x1080","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 	mSleep(fms)
 	while true do
-
-		while true do
-			multiColTap({
-					{  953, 1625, 0xe10600},
-					{  975, 1576, 0xffeab3},
-					{  982, 1618, 0xcf1705},
-					{ 1066, 1698, 0xe30100},
-				})--右下角入口
-			x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
+		x, y = findImageInRegionFuzzy("freefruit.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
+		if x ~= -1 and y ~= -1 then
+			--fwShowTextView("banner","text1","免费领水果","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+			mSleep(fms)
+			tap(x+100,y-10)
+			mLog("免费领水果")
+		end
+		multiColTap({
+				{  953, 1625, 0xe10600},
+				{  975, 1576, 0xffeab3},
+				{  982, 1618, 0xcf1705},
+				{ 1066, 1698, 0xe30100},
+			})--右下角入口
+		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
+		if x ~= -1 then
+			--fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+			--mSleep(fms)
+			tap(x,y)
+			mLog("签到")
+		end
+		if task2 == "任务二" then
+			x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
 			if x ~= -1 then
-				fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-				mSleep(fms)
+				--fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
 				tap(x,y)
-				log("签到")
+				t0 = os.time()
+				window()
+				mLog("点击第二个任务")
+				finish()
 			end
-			if task2 == "任务二" then
-				x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
-				if x ~= -1 then
-					fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-					mSleep(fms)
-					tap(x,y)
-					t0 = os.time()
-					window()
-					log("点击第二个任务")
-					finish()
-				end
+		end
+		if task3 == "任务三" then
+			x,y = findMultiColorInRegionFuzzy( 0xfd613f, "64|59|0xfc4740,-77|-6|0xffffff,109|68|0xffffff", 90, 771, 1045, 998, 1151)--3
+			if x ~= -1 then
+				--fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
+				tap(x,y)
+				t0 = os.time()
+				window()
+				mLog("点击第三个任务")
+				finish()
 			end
-			if task3 == "任务三" then
-				x,y = findMultiColorInRegionFuzzy( 0xfd613f, "64|59|0xfc4740,-77|-6|0xffffff,109|68|0xffffff", 90, 771, 1045, 998, 1151)--3
-				if x ~= -1 then
-					fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-					mSleep(fms)
-					tap(x,y)
-					t0 = os.time()
-					window()
-					log("点击第三个任务")
-					finish()
-				end
+		end
+		if task4 == "任务四" then
+			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "50|60|0xfb483e,-87|0|0xffffff,97|73|0xffffff", 80, 777, 1240, 987, 1332)--4
+			if x ~= -1 then
+				--fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
+				tap(x,y)
+				t0 = os.time()
+				window()
+				mLog("点击第四个任务")
+				finish()
 			end
-			if task4 == "任务四" then
-				x,y = findMultiColorInRegionFuzzy( 0xfe6240, "50|60|0xfb483e,-87|0|0xffffff,97|73|0xffffff", 80, 777, 1240, 987, 1332)--4
-				if x ~= -1 then
-					fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-					mSleep(fms)
-					tap(x,y)
-					t0 = os.time()
-					window()
-					log("点击第四个任务")
-					finish()
-				end
+		end
+		if task5 == "任务五" then
+			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "4|61|0xfc4740,-90|1|0xffffff,103|66|0xffffff", 90, 773, 1426, 993, 1520)--5
+			if x ~= -1 then
+				--fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
+				tap(x,y)
+				t0 = os.time()
+				window()
+				mLog("点击第五个任务")
+				finish()
 			end
-			if task5 == "任务五" then
-				x,y = findMultiColorInRegionFuzzy( 0xfe6240, "4|61|0xfc4740,-90|1|0xffffff,103|66|0xffffff", 90, 773, 1426, 993, 1520)--5
-				if x ~= -1 then
-					fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-					mSleep(fms)
-					tap(x,y)
-					t0 = os.time()
-					window()
-					log("点击第五个任务")
-					finish()
-				end
-			end
-			if task6 == "任务六" then
-				x,y = findMultiColorInRegionFuzzy( 0xfe6240, "73|60|0xfc4740,-70|2|0xffffff,118|66|0xffffff", 80, 780, 1623, 982, 1703)--6
-				if x ~= -1 then
-					fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
-					mSleep(fms)
-					tap(x,y)
-					t0 = os.time()
-					window()
-					log("点击第六个任务")
-					finish()
-				end
+		end
+		if task6 == "任务六" then
+			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "73|60|0xfc4740,-70|2|0xffffff,118|66|0xffffff", 80, 780, 1623, 982, 1703)--6
+			if x ~= -1 then
+				--fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
+				--mSleep(fms)
+				tap(x,y)
+				t0 = os.time()
+				window()
+				mLog("点击第六个任务")
+				finish()
 			end
 		end
 	end

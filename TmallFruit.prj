@@ -1,1 +1,1 @@
-{"plugin":[],"src":["main.lua"],"comment":"--%s\n--%s\n\n-- Create By %s on %s\n-- Copyright © %s . All rights reserved.\n","templates":"default","res":[],"preset":"\t\nlocal ts = require\"ts\"\n\t\nrequire\"TSLib\"\n\t\n","author":"TouchSpriteStudio"}
+{"plugin":[],"src":["main.lua"],"comment":"--%s\n--%s\n\n-- Create By %s on %s\n-- Copyright © %s . All rights reserved.\n","templates":"default","res":["freefruit.png"],"author":"TouchSpriteStudio","preset":"\t\nlocal ts = require\"ts\"\n\t\nrequire\"TSLib\"\n\t\n"}
