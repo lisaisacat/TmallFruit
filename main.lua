@@ -120,25 +120,25 @@ if w == 1080 and h == 1920 then
 	mLog("分辨率：1920x1080")
 	mSleep(fms)
 	while true do
-		x, y = findImageInRegionFuzzy("立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
+		x, y = findImageInRegionFuzzy("__encrypt__立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("淘宝人生立即签到")
 			mSleep(fms)
 			tap(x+300,y+20)
 		end
-		x, y = findImageInRegionFuzzy("获得纽扣确定.png", 90,  260, 1200, 820, 1316, 0xb0da58,2);
+		x, y = findImageInRegionFuzzy("__encrypt__获得纽扣确定.png", 90,  260, 1200, 820, 1316, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("淘宝人生获得金币")
 			mSleep(fms)
 			tap(x+300,y+20)
 		end
-		x, y = findImageInRegionFuzzy("回到淘宝.png", 90,  238, 1125, 838, 1243, 0xb0da58,2);
+		x, y = findImageInRegionFuzzy("__encrypt__回到淘宝.png", 90,  238, 1125, 838, 1243, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("回到淘宝")
 			mSleep(fms)
 			tap(x+300,y+20)
 		end
-		x, y = findImageInRegionFuzzy("免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
+		x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			--fwShowTextView("banner","text1","免费领水果","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 			mLog("免费领水果")
