@@ -38,26 +38,23 @@ UILabel("3. 不支持分享好友任务",16,"left","0,0,0")
 UILabel("4. 目前已兼容分辨率：",16,"left","0,0,0")
 UILabel(" 安卓 1920x1080",16,"left","0,0,0")
 UILabel("选择任务",20,"center","230,50,92")
-UICheck("task2,task3,task4,task5,task6","任务二,任务三,任务四,任务五,任务六","1@2@3@4")
+UICheck("task2,task3,task4,task5,task6","任务二,任务三,任务四,任务五,任务六","0@1@2@3@4")
 UIShow()
 
 function window()
 	ss = 30
 	for i = 1,30 do
 		ss = ss-1
-		--fwShowTextView("banner","text1","倒计时 "..ss,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 		mLog("倒计时 "..ss)
 		mSleep(fms)
 	end
 end
 
 t0 = os.time()
---fwShowTextView("banner","text1",t0,"center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 
 function finish()
 	t1 = os.time()
 	if t1-t0 >= 30 then
-		--fwShowTextView("banner","text1","倒计时完成，已获得福气","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 		mLog("倒计时完成，已获得福气")
 		mSleep(fms)
 		if w == 640 and h == 1136 then
@@ -116,10 +113,27 @@ function finish()
 end
 
 if w == 1080 and h == 1920 then
-	--fwShowTextView("banner","text1","分辨率：1920x1080","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 	mLog("分辨率：1920x1080")
 	mSleep(fms)
 	while true do
+		x, y = findImageInRegionFuzzy("__encrypt__天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-1")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__天猫农场2.png", 90,  680, 681, 819, 787, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-2")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__立即去收.png", 90,  215, 1447, 853, 1625, 0x3b4319,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("丰收时刻")
+			mSleep(fms)
+			tap(x+300,y+80)
+		end
 		x, y = findImageInRegionFuzzy("__encrypt__立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("淘宝人生立即签到")
@@ -140,10 +154,15 @@ if w == 1080 and h == 1920 then
 		end
 		x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
-			--fwShowTextView("banner","text1","免费领水果","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 			mLog("免费领水果")
 			mSleep(fms)
 			tap(x+100,y+10)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__集福气.png", 90,  857, 1510, 1075, 1748, 0xe5473f,2);
+		if x ~= -1 and y ~= -1 then
+			mLog("集福气")
+			mSleep(fms)
+			tap(x+100,y+70)
 		end
 		multiColTap({
 				{  953, 1625, 0xe10600},
@@ -153,15 +172,13 @@ if w == 1080 and h == 1920 then
 			})--右下角入口
 		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
 		if x ~= -1 then
-			--fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 			mLog("签到")
 			mSleep(fms)
 			tap(x,y)
 		end
 		if task2 == "任务二" then
-			x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90,  779, 679, 997, 773, 0xb0da58,2);
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第二个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -171,9 +188,8 @@ if w == 1080 and h == 1920 then
 			end
 		end
 		if task3 == "任务三" then
-			x,y = findMultiColorInRegionFuzzy( 0xfd613f, "64|59|0xfc4740,-77|-6|0xffffff,109|68|0xffffff", 90, 771, 1045, 998, 1151)--3
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 771, 1045, 998, 1151, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第三个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -183,9 +199,8 @@ if w == 1080 and h == 1920 then
 			end
 		end
 		if task4 == "任务四" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "50|60|0xfb483e,-87|0|0xffffff,97|73|0xffffff", 80, 777, 1240, 987, 1332)--4
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 777, 1240, 987, 1332, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第四个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -195,9 +210,8 @@ if w == 1080 and h == 1920 then
 			end
 		end
 		if task5 == "任务五" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "4|61|0xfc4740,-90|1|0xffffff,103|66|0xffffff", 90, 773, 1426, 993, 1520)--5
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 773, 1426, 993, 1520, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第五个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -207,9 +221,8 @@ if w == 1080 and h == 1920 then
 			end
 		end
 		if task6 == "任务六" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "73|60|0xfc4740,-70|2|0xffffff,118|66|0xffffff", 80, 780, 1623, 982, 1703)--6
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 780, 1623, 982, 1703, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第六个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -224,10 +237,27 @@ else
 	mLog("脚本尚未完全适配您的手机分辨率，不保证运行效果")
 	mSleep(3000)
 	setScreenScale(true, 1080, 1920)
-	--fwShowTextView("banner","text1","分辨率：1920x1080","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.5);
 	mLog("分辨率："..w.."x"..h)
 	mSleep(fms)
 	while true do
+		x, y = findImageInRegionFuzzy("__encrypt__天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-1")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__天猫农场2.png", 90,  680, 681, 819, 787, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-2")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__立即去收.png", 90,  215, 1447, 853, 1625, 0x3b4319,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("丰收时刻")
+			mSleep(fms)
+			tap(x+300,y+80)
+		end
 		x, y = findImageInRegionFuzzy("__encrypt__立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("淘宝人生立即签到")
@@ -248,7 +278,6 @@ else
 		end
 		x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
-			--fwShowTextView("banner","text1","免费领水果","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 			mLog("免费领水果")
 			mSleep(fms)
 			tap(x+100,y+10)
@@ -259,17 +288,15 @@ else
 				{  982, 1618, 0xcf1705},
 				{ 1066, 1698, 0xe30100},
 			})--右下角入口
-		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)--签到
+		x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 783, 473, 1001, 599)
 		if x ~= -1 then
-			--fwShowTextView("banner","text1","签到","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 			mLog("签到")
 			mSleep(fms)
 			tap(x,y)
 		end
 		if task2 == "任务二" then
-			x,y = findMultiColorInRegionFuzzy( 0xff6247, "121|58|0xfc4740,62|-20|0xffffff,69|81|0xffffff", 90, 783, 853, 991, 975)--2
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90,  779, 679, 997, 773, 0xb0da58,2);
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第二个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第二个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -279,9 +306,8 @@ else
 			end
 		end
 		if task3 == "任务三" then
-			x,y = findMultiColorInRegionFuzzy( 0xfd613f, "64|59|0xfc4740,-77|-6|0xffffff,109|68|0xffffff", 90, 771, 1045, 998, 1151)--3
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 771, 1045, 998, 1151, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第三个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第三个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -291,9 +317,8 @@ else
 			end
 		end
 		if task4 == "任务四" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "50|60|0xfb483e,-87|0|0xffffff,97|73|0xffffff", 80, 777, 1240, 987, 1332)--4
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 777, 1240, 987, 1332, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第四个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第四个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -303,9 +328,8 @@ else
 			end
 		end
 		if task5 == "任务五" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "4|61|0xfc4740,-90|1|0xffffff,103|66|0xffffff", 90, 773, 1426, 993, 1520)--5
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 773, 1426, 993, 1520, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第五个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第五个任务")
 				mSleep(fms)
 				tap(x,y)
@@ -315,9 +339,8 @@ else
 			end
 		end
 		if task6 == "任务六" then
-			x,y = findMultiColorInRegionFuzzy( 0xfe6240, "73|60|0xfc4740,-70|2|0xffffff,118|66|0xffffff", 80, 780, 1623, 982, 1703)--6
+			x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90, 780, 1623, 982, 1703, 0xb0da58,2)
 			if x ~= -1 then
-				--fwShowTextView("banner","text1","点击第六个任务","center","FFFFFF","000000",15,0,lx,ly,rx,ry,0.6);
 				mLog("点击第六个任务")
 				mSleep(fms)
 				tap(x,y)
