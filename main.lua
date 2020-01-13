@@ -113,7 +113,7 @@ function finish()
 end
 
 if w == 1080 and h == 1920 then
-	mLog("分辨率：1920x1080")
+	mLog("分辨率："..w.."x"..h)
 	mSleep(fms)
 	while true do
 		x, y = findImageInRegionFuzzy("__encrypt__天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,1);
@@ -134,6 +134,18 @@ if w == 1080 and h == 1920 then
 			mSleep(fms)
 			tap(x+300,y+80)
 		end
+		x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
+		if x ~= -1 and y ~= -1 then
+			mLog("免费领水果")
+			mSleep(fms)
+			tap(x+100,y+10)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__集福气.png", 90,  857, 1510, 1075, 1748, 0xe5473f,2);
+		if x ~= -1 and y ~= -1 then
+			mLog("集福气")
+			mSleep(fms)
+			tap(x+100,y+70)
+		end
 		x, y = findImageInRegionFuzzy("__encrypt__立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
 		if x ~= -1 and y ~= -1 then
 			mLog("淘宝人生立即签到")
@@ -151,18 +163,6 @@ if w == 1080 and h == 1920 then
 			mLog("回到淘宝")
 			mSleep(fms)
 			tap(x+300,y+20)
-		end
-		x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
-		if x ~= -1 and y ~= -1 then
-			mLog("免费领水果")
-			mSleep(fms)
-			tap(x+100,y+10)
-		end
-		x, y = findImageInRegionFuzzy("__encrypt__集福气.png", 90,  857, 1510, 1075, 1748, 0xe5473f,2);
-		if x ~= -1 and y ~= -1 then
-			mLog("集福气")
-			mSleep(fms)
-			tap(x+100,y+70)
 		end
 		multiColTap({
 				{  953, 1625, 0xe10600},
@@ -232,7 +232,41 @@ if w == 1080 and h == 1920 then
 			end
 		end
 	end
-
+elseif w == 1242 and h == 2208 then
+	mLog("分辨率："..w.."x"..h)
+	mSleep(fms)
+	while true do
+		x, y = findImageInRegionFuzzy("__encrypt__6p天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-1")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__6p天猫农场2.png", 90,  299, 950, 463, 1063, 0xf6f7f6,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("天猫农场-2")
+			mSleep(fms)
+			tap(x+50,y+50)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__6p立即去收.png", 90,  259, 1697, 976, 1890, 0x3b4319,1);
+		if x ~= -1 and y ~= -1 then
+			mLog("丰收时刻")
+			mSleep(fms)
+			tap(x+270,y+80)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__6p免费领水果.png", 90,  0, 1759, 293, 1857, 0xb0da58,2);
+		if x ~= -1 and y ~= -1 then
+			mLog("免费领水果")
+			mSleep(fms)
+			tap(x+100,y+10)
+		end
+		x, y = findImageInRegionFuzzy("__encrypt__6p集福气.png", 90,  1001, 1734, 1236, 1981, 0xe5473f,2);
+		if x ~= -1 and y ~= -1 then
+			mLog("集福气")
+			mSleep(fms)
+			tap(x+100,y+70)
+		end
+	end
 else
 	mLog("脚本尚未完全适配您的手机分辨率，不保证运行效果")
 	mSleep(3000)
