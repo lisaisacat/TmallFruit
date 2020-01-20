@@ -36,12 +36,12 @@ UILabel("1. 需要手动进入活动页面脚本才生效",16,"left","0,0,0")
 UILabel("2. 目前已兼容分辨率：安卓 1920x1080",16,"left","0,0,0")
 UILabel("您当前设备的分辨率为"..h.."x"..w,16,"left","0,0,0")
 UILabel("农场任务",20,"center","230,50,92")
-UICheck("type1,type2,type3","偷阳光,领阳光,领福气","0")
+UIRadio("types","偷阳光,领阳光,领福气","0")
 UILabel("【领阳光】任务（从下往上数）",20,"center","230,50,92")
 UICheck("sun2,sun3,sun4","倒数第二,倒数第三,倒数第四","0@2")
-UILabel("福气任务（从下往上数）",20,"center","230,50,92")
+UILabel("【福气】任务（从下往上数）",20,"center","230,50,92")
 UICheck("task1,task2,task3,task4,task5,task6","任务1,任务2,任务3,任务4,任务5,任务6","1@2@3@4@5")
-UILabel("福气任务类型",20,"center","230,50,92")
+UILabel("【福气】任务类型",20,"center","230,50,92")
 UIRadio("mode","只找浏览任务,全部任务类型","1")
 UIShow()
 
@@ -120,51 +120,55 @@ if w == 1080 and h == 1920 then
 	mLog("分辨率："..w.."x"..h)
 	mSleep(fms)
 	while true do
-		x, y = findImageInRegionFuzzy("集阳光兑好礼.png", 90,  849, 957, 1070, 1020, 0xe4f0a1,2);
-		if x ~= -1 and y ~= -1 then
-			tap(x,y+20)
-			mLog("集阳光兑好礼")
-		end 
-		x, y = findImageInRegionFuzzy("偷阳光.png", 90,  891, 1278, 1068, 1452, 0x9cd345,2);
-		if x ~= -1 and y ~= -1 then
-			tap(x+50,y+50)
-			mLog("偷阳光")
-		end
-		x, y = findImageInRegionFuzzy("偷阳光列表.png", 90,  398, 461, 675, 563, 0x9cd345,2);
-		if x ~= -1 and y ~= -1 then
-			mLog("偷阳光列表")
-			x, y = findImageInRegionFuzzy("可偷取.png", 90,  741, 728, 959, 815, 0xffb10b,2);
+		if types == "偷阳光" then
+			x, y = findImageInRegionFuzzy("集阳光兑好礼.png", 90,  849, 957, 1070, 1020, 0xe4f0a1,2);
 			if x ~= -1 and y ~= -1 then
-				tap(x+100,y+30)
-				mLog("可偷取")
-				mSleep(5000)
+				tap(x,y+20)
+				mLog("集阳光兑好礼")
+				mSleep(fms)
+			end 
+			x, y = findImageInRegionFuzzy("偷阳光.png", 90,  891, 1278, 1068, 1452, 0x9cd345,2);
+			if x ~= -1 and y ~= -1 then
+				tap(x+50,y+50)
+				mLog("偷阳光")
+				mSleep(fms)
 			end
-		end
-		x,y = findMultiColorInRegionFuzzy( 0xffffff, "-18|3|0xffffff,19|3|0xffffff,-1|6|0xffffff,-11|33|0xffffff,18|33|0xffffff,36|26|0xffffff,55|-5|0xffffff,53|20|0xffffff,71|29|0xffffff", 90, 106, 104, 412, 172)
-		if x ~= -1 and y ~= -1 then
-			point = findMultiColor( 0xf9c94e, "17|-2|0xfcd347,-15|-14|0xfeb308,-6|21|0xffb302,5|-6|0xfcdb63,0|7|0xf9c24b", 90, 13, 470, 1057, 900,{orient = 1,miss = 10 })
-			if #point ~= 0 then  --如返回的table不为空（至少找到一个符合条件的点）
-				for var = 1,#point do
-					nLog(point[var].x..":"..point[var].y)
-					tap(point[var].x,point[var].y)
-					mLog("收取阳光")
-					mSleep(1000)
-				end
-			else
-				mSleep(5000)
-				if multiColor({
-						{ 1039, 1513, 0xf68574},
-						{  972, 1493, 0x76dfff},
-						{  937, 1546, 0xffffff},
-						{  977, 1544, 0xfdde7a},
-						}) == false then
-					os.execute("input keyevent KEYCODE_BACK")
-					mLog("没有阳光啦！返回")
-					mSleep(1000)
+			x, y = findImageInRegionFuzzy("偷阳光列表.png", 90,  398, 461, 675, 563, 0x9cd345,2);
+			if x ~= -1 and y ~= -1 then
+				mLog("偷阳光列表")
+				mSleep(fms)
+				x, y = findImageInRegionFuzzy("可偷取.png", 90,  741, 728, 959, 815, 0xffb10b,2);
+				if x ~= -1 and y ~= -1 then
+					tap(x+100,y+30)
+					mLog("可偷取")
+					mSleep(5000)
 				end
 			end
-		end
-		if type2 == "领阳光" then
+			x,y = findMultiColorInRegionFuzzy( 0xffffff, "-18|3|0xffffff,19|3|0xffffff,-1|6|0xffffff,-11|33|0xffffff,18|33|0xffffff,36|26|0xffffff,55|-5|0xffffff,53|20|0xffffff,71|29|0xffffff", 90, 106, 104, 412, 172)
+			if x ~= -1 and y ~= -1 then
+				point = findMultiColor( 0xf9c94e, "17|-2|0xfcd347,-15|-14|0xfeb308,-6|21|0xffb302,5|-6|0xfcdb63,0|7|0xf9c24b", 90, 13, 470, 1057, 900,{orient = 1,miss = 10 })
+				if #point ~= 0 then  --如返回的table不为空（至少找到一个符合条件的点）
+					for var = 1,#point do
+						nLog(point[var].x..":"..point[var].y)
+						tap(point[var].x,point[var].y)
+						mLog("收取阳光")
+						mSleep(fms)
+					end
+				else
+					mSleep(5000)
+					if multiColor({
+							{ 1039, 1513, 0xf68574},
+							{  972, 1493, 0x76dfff},
+							{  937, 1546, 0xffffff},
+							{  977, 1544, 0xfdde7a},
+							}) == false then
+						os.execute("input keyevent KEYCODE_BACK")
+						mLog("没有阳光啦！返回")
+						mSleep(fms)
+					end
+				end
+			end
+		elseif types == "领阳光" then
 			multiColTap({
 					{ 1039, 1513, 0xf68574},
 					{  972, 1493, 0x76dfff},
@@ -229,8 +233,7 @@ if w == 1080 and h == 1920 then
 				os.execute("input keyevent KEYCODE_BACK")
 				mSleep(1000)
 			end
-		end
-		if type3 == "领福气" then
+		elseif types == "领福气" then
 			x, y = findImageInRegionFuzzy("__encrypt__天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,2);
 			if x ~= -1 and y ~= -1 then
 				tap(x+50,y+50)
@@ -412,10 +415,12 @@ if w == 1080 and h == 1920 then
 				end
 			end
 		end
-	elseif w == 1242 and h == 2208 then
-		mLog("分辨率："..w.."x"..h)
-		mSleep(fms)
-		while true do
+	end
+elseif w == 1242 and h == 2208 then
+	mLog("分辨率："..w.."x"..h)
+	mSleep(fms)
+	while true do
+		if types == "领福气" then
 			x, y = findImageInRegionFuzzy("__encrypt__6p天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,1);
 			if x ~= -1 and y ~= -1 then
 				mLog("天猫农场-1")
@@ -447,92 +452,5 @@ if w == 1080 and h == 1920 then
 				tap(x+100,y+70)
 			end
 		end
-	elseif w == 750 and h == 1334 then
-		mLog("分辨率："..w.."x"..h)
-		mSleep(fms)
-		while true do
-			x, y = findImageInRegionFuzzy("6s添加.png", 90,  397, 620, 468, 687, 0xeef1fb,1);
-			if x ~= -1 and y ~= -1 then
-				mLog("添加")
-				mSleep(fms)
-				tap(x+50,y+50)
-			end
-		end
-	else
-		mLog("脚本尚未完全适配您的手机分辨率，不保证运行效果")
-		mSleep(3000)
-		setScreenScale(true, 1080, 1920)
-		mLog("分辨率："..w.."x"..h)
-		mSleep(fms)
-		while true do
-			x, y = findImageInRegionFuzzy("__encrypt__天猫农场1.png", 90,  675, 650, 843, 782, 0xf6f7f6,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("天猫农场-1")
-				mSleep(fms)
-				tap(x+50,y+50)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__天猫农场2.png", 90,  680, 681, 819, 787, 0xf6f7f6,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("天猫农场-2")
-				mSleep(fms)
-				tap(x+50,y+50)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__立即去收.png", 90,  215, 1447, 853, 1625, 0x3b4319,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("丰收时刻")
-				mSleep(fms)
-				tap(x+300,y+80)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__立即签到.png", 90,  236, 1247, 842, 1366, 0xb0da58,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("淘宝人生立即签到")
-				mSleep(fms)
-				tap(x+300,y+20)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__获得纽扣确定.png", 90,  260, 1200, 820, 1316, 0xb0da58,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("淘宝人生获得金币")
-				mSleep(fms)
-				tap(x+300,y+20)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__回到淘宝.png", 90,  238, 1125, 838, 1243, 0xb0da58,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("回到淘宝")
-				mSleep(fms)
-				tap(x+300,y+20)
-			end
-			x, y = findImageInRegionFuzzy("__encrypt__免费领水果.png", 90,  0, 1599, 254, 1684, 0xb0da58,2);
-			if x ~= -1 and y ~= -1 then
-				mLog("免费领水果")
-				mSleep(fms)
-				tap(x+100,y+10)
-			end
-			multiColTap({
-					{  953, 1625, 0xe10600},
-					{  975, 1576, 0xffeab3},
-					{  982, 1618, 0xcf1705},
-					{ 1066, 1698, 0xe30100},
-				})--右下角入口
-			if task0 == "签到" then
-				x,y = findMultiColorInRegionFuzzy( 0xfd613f, "63|-13|0xff0036,-99|-18|0xfedfdf,72|-7|0xff0036", 90, 777,  488,994, 1354)--签到
-				if x ~= -1 then
-					mLog("签到")
-					mSleep(fms)
-					tap(x+100,y+40)
-				end
-			end
-			if task1 == "浏览" then
-				x, y = findImageInRegionFuzzy("__encrypt__去浏览.png", 90,  753,  674,994, 1720,0);
-				if x ~= -1 then
-					mLog("点击浏览任务")
-					mSleep(fms)
-					tap(x+100,y+40)
-					t0 = os.time()
-					window()
-					finish()
-				end
-			end
-		end
-		setScreenScale(false)
 	end
 end
